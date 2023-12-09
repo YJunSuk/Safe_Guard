@@ -1,0 +1,178 @@
+[debug] [2023-12-08T06:23:12.403Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:23:12.406Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe
+[debug] [2023-12-08T06:23:12.406Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:23:12.406Z] Platform:      win32
+[debug] [2023-12-08T06:23:12.406Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:23:12.407Z] Time:          Fri Dec 08 2023 15:23:12 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:23:12.407Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:23:12.410Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-12-08T06:23:12.459Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:23:12.459Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:23:12.826Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-12-08T06:23:12.827Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-12-08T06:23:29.429Z] > refreshing access token with scopes: []
+[debug] [2023-12-08T06:23:29.430Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-12-08T06:23:29.430Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-08T06:23:29.809Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-12-08T06:23:29.809Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-12-08T06:23:29.849Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:23:29.849Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe","name":"safe"}
+[debug] [2023-12-08T06:23:31.183Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-08T06:23:31.184Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id must be at least 6 characters long]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-08T06:23:31.512Z] FirebaseError: HTTP Error: 400, field [project_id] has issue [project_id must be at least 6 characters long]
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2023-12-08T06:24:39.516Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:24:39.519Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe
+[debug] [2023-12-08T06:24:39.519Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:24:39.520Z] Platform:      win32
+[debug] [2023-12-08T06:24:39.520Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:24:39.520Z] Time:          Fri Dec 08 2023 15:24:39 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:24:39.520Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:24:39.527Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:24:39.527Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:24:48.992Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:24:48.992Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe","name":"safe"}
+[debug] [2023-12-08T06:24:50.137Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-08T06:24:50.137Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id must be at least 6 characters long]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-08T06:24:50.604Z] FirebaseError: HTTP Error: 400, field [project_id] has issue [project_id must be at least 6 characters long]
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2023-12-08T06:25:35.013Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:25:35.017Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe-guard
+[debug] [2023-12-08T06:25:35.017Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:25:35.017Z] Platform:      win32
+[debug] [2023-12-08T06:25:35.017Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:25:35.018Z] Time:          Fri Dec 08 2023 15:25:35 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:25:35.018Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:25:35.025Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:25:35.025Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:25:45.145Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:25:45.145Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe-guard","name":"safe-guard"}
+[debug] [2023-12-08T06:25:46.327Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2023-12-08T06:25:46.327Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-12-08T06:25:46.827Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID safe-guard. Please try again with a unique project ID.
+[debug] [2023-12-08T06:26:16.023Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:26:16.027Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe
+[debug] [2023-12-08T06:26:16.027Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:26:16.027Z] Platform:      win32
+[debug] [2023-12-08T06:26:16.027Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:26:16.027Z] Time:          Fri Dec 08 2023 15:26:16 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:26:16.027Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:26:16.034Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:26:16.034Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:26:18.026Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:26:18.027Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe","name":"safe-guard"}
+[debug] [2023-12-08T06:26:19.244Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-08T06:26:19.246Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id must be at least 6 characters long]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-08T06:26:19.703Z] FirebaseError: HTTP Error: 400, field [project_id] has issue [project_id must be at least 6 characters long]
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2023-12-08T06:27:06.704Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:27:06.707Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe
+[debug] [2023-12-08T06:27:06.707Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:27:06.707Z] Platform:      win32
+[debug] [2023-12-08T06:27:06.708Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:27:06.708Z] Time:          Fri Dec 08 2023 15:27:06 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:27:06.708Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:27:06.715Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:27:06.715Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:27:15.938Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:27:15.938Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe","name":"guard"}
+[debug] [2023-12-08T06:27:17.080Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-08T06:27:17.081Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id must be at least 6 characters long]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-08T06:27:17.453Z] FirebaseError: HTTP Error: 400, field [project_id] has issue [project_id must be at least 6 characters long]
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2023-12-08T06:27:32.054Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:27:32.057Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe-guard
+[debug] [2023-12-08T06:27:32.058Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:27:32.058Z] Platform:      win32
+[debug] [2023-12-08T06:27:32.058Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:27:32.058Z] Time:          Fri Dec 08 2023 15:27:32 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:27:32.058Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:27:32.065Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:27:32.065Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:27:33.449Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:27:33.449Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe-guard","name":"safe"}
+[debug] [2023-12-08T06:27:34.579Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2023-12-08T06:27:34.579Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-12-08T06:27:35.012Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID safe-guard. Please try again with a unique project ID.
+[debug] [2023-12-08T06:28:52.553Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:28:52.556Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create
+[debug] [2023-12-08T06:28:52.556Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:28:52.557Z] Platform:      win32
+[debug] [2023-12-08T06:28:52.557Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:28:52.557Z] Time:          Fri Dec 08 2023 15:28:52 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:28:52.557Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:28:52.564Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:28:52.564Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:29:10.089Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:29:10.093Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safeguard
+[debug] [2023-12-08T06:29:10.093Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:29:10.094Z] Platform:      win32
+[debug] [2023-12-08T06:29:10.094Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:29:10.094Z] Time:          Fri Dec 08 2023 15:29:10 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:29:10.094Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:29:10.101Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:29:10.102Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:29:39.754Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:29:39.754Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safeguard","name":"safeguard-efb3a"}
+[debug] [2023-12-08T06:29:40.890Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2023-12-08T06:29:40.890Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2023-12-08T06:29:41.132Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID safeguard. Please try again with a unique project ID.
+[debug] [2023-12-08T06:30:26.254Z] ----------------------------------------------------------------------
+[debug] [2023-12-08T06:30:26.257Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create safe-guard
+[debug] [2023-12-08T06:30:26.257Z] CLI Version:   13.0.1
+[debug] [2023-12-08T06:30:26.257Z] Platform:      win32
+[debug] [2023-12-08T06:30:26.258Z] Node Version:  v20.9.0
+[debug] [2023-12-08T06:30:26.258Z] Time:          Fri Dec 08 2023 15:30:26 GMT+0900 (대한민국 표준시)
+[debug] [2023-12-08T06:30:26.258Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-08T06:30:26.265Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-08T06:30:26.265Z] > authorizing via signed-in user (junsuk530@gmail.com)
+[debug] [2023-12-08T06:30:27.435Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2023-12-08T06:30:27.436Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"safe-guard","name":"y"}
+[debug] [2023-12-08T06:30:28.514Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2023-12-08T06:30:28.514Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [display_name] has issue [project display name must be at least 4 characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"display_name","description":"project display name must be at least 4 characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2023-12-08T06:30:28.682Z] FirebaseError: HTTP Error: 400, field [display_name] has issue [project display name must be at least 4 characters]
+    at responseToError (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Yang\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:292:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
