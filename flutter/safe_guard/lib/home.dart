@@ -5,9 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safe_guard/firebase_options.dart';
 import 'package:safe_guard/camera.dart';
 
-
 class Home extends StatefulWidget {
-
   Home({Key? key}) : super(key: key);
 
   @override
@@ -37,60 +35,56 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Widget title(String listnum){
+  Widget title(String listnum) {
     return FutureBuilder<String>(
-          future: getTitleName(listnum),
-          builder: (context, snapshot){
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return Text('Loading...');
-            }
-            return Text(snapshot.data ?? 'No Title');
-          }
-          );
-  }
-
-  Widget image(String listnum){
-    return FutureBuilder<String>(
-        future: getImageUrl(listnum),
+        future: getTitleName(listnum),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // 로딩 중
+            return Text('Loading...');
           }
-          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-            return Center(
-              child: Image.network(snapshot.data!), // 이미지 표시
-            );
-          } else {
-            return const Center(
-              child: Text('이미지를 불러올 수 없습니다.'),
-            );
-          }
-        },
-      );
+          return Text(snapshot.data ?? 'No Title');
+        });
   }
 
-
+  Widget image(String listnum) {
+    return FutureBuilder<String>(
+      future: getImageUrl(listnum),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // 로딩 중
+        }
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          return Center(
+            child: Image.network(snapshot.data!), // 이미지 표시
+          );
+        } else {
+          return const Center(
+            child: Text('이미지를 불러올 수 없습니다.'),
+          );
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safe_Guard'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.camera_indoor,
-                size: 50
-                ),
-              tooltip: 'CCTV 전환',
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
+        title: Text('Safe_Guard', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.blueAccent,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.camera_indoor, size: 45),
+            tooltip: 'CCTV 전환',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
                   return Camera();
                 },
-                ));
-              },
-              )
-          ],
+              ));
+            },
+          )
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: firestore.collection('test').snapshots(),
@@ -107,16 +101,32 @@ class _HomeState extends State<Home> {
           return ListView.builder(
             itemCount: docs.length,
             itemBuilder: (context, index) {
-              Map<String, dynamic> data = docs[index].data() as Map<String, dynamic>;
+              Map<String, dynamic> data =
+                  docs[index].data() as Map<String, dynamic>;
               String name = data['name'] ?? 'No Title';
               String imageUrl = data['image'] ?? '';
 
               return Container(
-                height: 150,
+                height: 130,
                 child: Row(
                   children: [
-                    Expanded(child: Text(name)),
-                    imageUrl.isNotEmpty ? Expanded(child: Image.network(imageUrl)) : Container(),
+                    imageUrl.isNotEmpty
+                        ? Expanded(child: Image.network(imageUrl)
+                        )
+                        : Container(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(name, style: TextStyle(fontSize: 30)),
+                          Text(
+                            "TimeStamp(날짜/시간/분/초)",
+                            style: TextStyle(fontSize: 15)
+                            ),
+                        ],
+                      )
+                      ),
                   ],
                 ),
               );
