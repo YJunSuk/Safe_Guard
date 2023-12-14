@@ -1,15 +1,34 @@
-import 'dart:io';
-
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:safe_guard/firebase_options.dart';
+import 'package:intl/intl.dart';
 import 'package:safe_guard/camera.dart';
 
+class ImageDetailScreen extends StatelessWidget {
+  final String imageUrl;
+
+  ImageDetailScreen({required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Safe_Guard'),
+      ),
+      body: Center(
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+}
 
 class Home extends StatefulWidget {
   final CameraDescription camera;
-  Home({super.key, required this.camera});
+
+  Home({Key? key, required this.camera}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -18,59 +37,75 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // Firestore에서 'name' 필드를 가져오는 함수
-  Future<String> getTitleName(String docid) async {
+  Future<DateTime> getTimeStamp(String docid) async {
     var document = await firestore.collection('pictures').doc(docid).get();
-    if (document.exists) {
-      return document.data()!['name'] ?? 'No Title';
-    } else {
-      return 'No Title';
-    }
+
+    return (document.data()!['time'] as Timestamp).toDate();
   }
 
-  // Firestore에서 이미지 URL을 가져오는 함수
   Future<String> getImageUrl(String docid) async {
     var document = await firestore.collection('pictures').doc(docid).get();
     if (document.exists) {
-      return document.data()!['image'] ?? ''; // 'image' 필드에 URL이 있다고 가정
+      return document.data()!['image'] ?? '';
     } else {
-      return ''; // 문서가 존재하지 않을 경우 빈 문자열 반환
+      return '';
     }
   }
 
-  Widget title(String listnum){
+  Widget timestamp(String listnum) {
+    return FutureBuilder<DateTime>(
+      future: getTimeStamp(listnum),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text('Loading...');
+        }
+        String formattedDate =
+            DateFormat('yyyy-MM-dd HH:mm').format(snapshot.data!);
+
+        return Text(
+          "일시: $formattedDate",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        );
+      },
+    );
+  }
+
+  Widget image(String listnum) {
     return FutureBuilder<String>(
-          future: getTitleName(listnum),
-          builder: (context, snapshot){
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return Text('Loading...');
-            }
-            return Text(snapshot.data ?? 'No Title');
-          }
+      future: getImageUrl(listnum),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          return GestureDetector(
+            onTap: () {
+              // 이미지를 클릭했을 때의 동작 정의
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ImageDetailScreen(
+                    imageUrl: snapshot.data!,
+                  ),
+                ),
+              );
+            },
+            child: Image.network(
+              snapshot.data!,
+              fit: BoxFit.cover,
+              width: 100,
+              height: double.infinity,
+            ),
           );
+        } else {
+          return const Center(
+            child: Text('이미지를 불러올 수 없습니다.'),
+          );
+        }
+      },
+    );
   }
-
-  Widget image(String listnum){
-    return FutureBuilder<String>(
-        future: getImageUrl(listnum),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // 로딩 중
-          }
-          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-            return Center(
-              child: Image.network(snapshot.data!), // 이미지 표시
-            );
-          } else {
-            return const Center(
-              child: Text('이미지를 불러올 수 없습니다.'),
-            );
-          }
-        },
-      );
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -90,20 +125,31 @@ class _HomeState extends State<Home> {
 
           List<DocumentSnapshot> docs = snapshot.data!.docs;
 
-          return ListView.builder(
+          return ListView.separated(
             itemCount: docs.length,
+            separatorBuilder: (context, index) =>
+                SizedBox(height: 10), // Add spacing between items
             itemBuilder: (context, index) {
-              Map<String, dynamic> data = docs[index].data() as Map<String, dynamic>;
-              String name = data['name'] ?? 'No Title';
+              Map<String, dynamic> data =
+                  docs[index].data() as Map<String, dynamic>;
               String imageUrl = data['image'] ?? '';
 
-              return Container(
-                height: 150,
-                child: Row(
-                  children: [
-                    Expanded(child: Text(name)),
-                    imageUrl.isNotEmpty ? Expanded(child: Image.network(imageUrl)) : Container(),
-                  ],
+              return Card(
+                elevation: 5,
+                child: Container(
+                  height: 150,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        imageUrl.isNotEmpty
+                            ? image(docs[index].id) // Use the image widget
+                            : Container(),
+                        SizedBox(width: 10),
+                        timestamp(docs[index].id),
+                      ],
+                    ),
+                  ),
                 ),
               );
             },
@@ -113,16 +159,19 @@ class _HomeState extends State<Home> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return Camera(camera: widget.camera,);
-          },
-          ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Camera(
+                  camera: widget.camera,
+                );
+              },
+            ),
+          );
         },
-        tooltip: "CCTV 전환",
-        child: Icon(
-            Icons.camera_alt_rounded,
-            size: 50
-        ),
+        tooltip: 'CCTV 전환',
+        child: Icon(Icons.camera_alt_rounded, size: 50),
       ),
     );
   }

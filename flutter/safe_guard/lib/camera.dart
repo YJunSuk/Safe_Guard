@@ -80,7 +80,7 @@ class _CameraState extends State<Camera> {
             onPressed: () async {
               connection?.close() ?? ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("이미 해제되었습니다")));
             },
-            child: const Text("Connect")
+            child: const Text("Disconnect")
         ),
       ],
     );
