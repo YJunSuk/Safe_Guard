@@ -64,7 +64,7 @@ class _CameraState extends State<Camera> {
       children: [
         ElevatedButton(
           onPressed: () async {
-            var permissions = [Permission.bluetoothAdvertise, Permission.bluetoothConnect, Permission.bluetoothScan];
+           var permissions = [Permission.bluetoothConnect, Permission.bluetoothScan];
             for(var e in permissions){
               var status = await e.request();
               if(!status.isGranted){
@@ -147,7 +147,7 @@ class _CameraState extends State<Camera> {
       String newDocumentId = documentCount.toString();
 
       // 새 문서 ID로 문서를 추가합니다.
-      FirebaseFirestore.instance.collection('pictures').doc(newDocumentId).set({
+      FirebaseFirestore.instance.collection('pictures').add({
         'image': url,
         'time': DateTime.now()
       });

@@ -123,7 +123,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blueGrey,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: firestore.collection('pictures').snapshots(),
+        stream: firestore.collection('pictures').orderBy('time', descending: true).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
@@ -133,7 +133,12 @@ class _HomeState extends State<Home> {
           }
 
           // docs를 업데이트
-          docs = snapshot.data!.docs;
+          var docs = snapshot.data!.docs;
+          docs.sort((doc1, doc2) {
+            var time1 = ((doc1.data() as Map<String, dynamic>)['time'] as Timestamp).toDate();
+            var time2 = ((doc2.data() as Map<String, dynamic>)['time'] as Timestamp).toDate();
+            return time2.compareTo(time1); // 최신순으로 정렬
+          });
 
           return ListView.separated(
             itemCount: docs.length,
