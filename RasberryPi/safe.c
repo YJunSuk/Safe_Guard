@@ -258,7 +258,7 @@ void *takePictureThread() {
                 serialWrite(serialFile, 'P');
 				
 				// preStepAngle 업데이트
-				preStepAngle = 1;
+				preStepAngle = curStepAngle;
 				delay(2000);
 
 				pthread_mutex_unlock(&StepMotorLock);
