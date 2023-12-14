@@ -6,14 +6,17 @@ import 'package:safe_guard/camera.dart';
 
 class ImageDetailScreen extends StatelessWidget {
   final String imageUrl;
+  final DateTime timestamp; // 추가: timestamp를 받아오기 위한 변수
 
-  ImageDetailScreen({required this.imageUrl});
+  ImageDetailScreen({required this.imageUrl, required this.timestamp});
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(timestamp);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safe_Guard'),
+        title: Text('$formattedDate'), // timestamp를 사용하여 앱바 제목 설정
       ),
       body: Center(
         child: Image.network(
@@ -36,7 +39,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
+  List<DocumentSnapshot> docs = []; // 추가: DocumentSnapshot 리스트 선언
   Future<DateTime> getTimeStamp(String docid) async {
     var document = await firestore.collection('pictures').doc(docid).get();
 
@@ -71,7 +74,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget image(String listnum) {
+  Widget image(String listnum, int index) {
     return FutureBuilder<String>(
       future: getImageUrl(listnum),
       builder: (context, snapshot) {
@@ -80,13 +83,15 @@ class _HomeState extends State<Home> {
         }
         if (snapshot.hasData && snapshot.data!.isNotEmpty) {
           return GestureDetector(
-            onTap: () {
+            onTap: () async {
+              DateTime timestamp = await getTimeStamp(docs[index].id);
               // 이미지를 클릭했을 때의 동작 정의
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ImageDetailScreen(
                     imageUrl: snapshot.data!,
+                    timestamp: timestamp,
                   ),
                 ),
               );
@@ -123,7 +128,8 @@ class _HomeState extends State<Home> {
             return Text('No data available');
           }
 
-          List<DocumentSnapshot> docs = snapshot.data!.docs;
+          // docs를 업데이트
+          docs = snapshot.data!.docs;
 
           return ListView.separated(
             itemCount: docs.length,
@@ -143,7 +149,8 @@ class _HomeState extends State<Home> {
                     child: Row(
                       children: [
                         imageUrl.isNotEmpty
-                            ? image(docs[index].id) // Use the image widget
+                            ? image(
+                                docs[index].id, index) // Use the image widget
                             : Container(),
                         SizedBox(width: 10),
                         timestamp(docs[index].id),
