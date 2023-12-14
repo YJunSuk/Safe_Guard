@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safe_guard/firebase_options.dart';
@@ -7,8 +8,8 @@ import 'package:safe_guard/camera.dart';
 
 
 class Home extends StatefulWidget {
-
-  Home({Key? key}) : super(key: key);
+  final CameraDescription camera;
+  Home({super.key, required this.camera});
 
   @override
   _HomeState createState() => _HomeState();
@@ -19,7 +20,7 @@ class _HomeState extends State<Home> {
 
   // Firestore에서 'name' 필드를 가져오는 함수
   Future<String> getTitleName(String docid) async {
-    var document = await firestore.collection('test').doc(docid).get();
+    var document = await firestore.collection('pictures').doc(docid).get();
     if (document.exists) {
       return document.data()!['name'] ?? 'No Title';
     } else {
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
 
   // Firestore에서 이미지 URL을 가져오는 함수
   Future<String> getImageUrl(String docid) async {
-    var document = await firestore.collection('test').doc(docid).get();
+    var document = await firestore.collection('pictures').doc(docid).get();
     if (document.exists) {
       return document.data()!['image'] ?? ''; // 'image' 필드에 URL이 있다고 가정
     } else {
@@ -76,24 +77,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Safe_Guard'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.camera_indoor,
-                size: 50
-                ),
-              tooltip: 'CCTV 전환',
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return Camera();
-                },
-                ));
-              },
-              )
-          ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: firestore.collection('test').snapshots(),
+        stream: firestore.collection('pictures').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
@@ -123,6 +109,20 @@ class _HomeState extends State<Home> {
             },
           );
         },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return Camera(camera: widget.camera,);
+          },
+          ));
+        },
+        tooltip: "CCTV 전환",
+        child: Icon(
+            Icons.camera_alt_rounded,
+            size: 50
+        ),
       ),
     );
   }
