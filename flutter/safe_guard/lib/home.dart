@@ -119,11 +119,14 @@ class _HomeState extends State<Home> {
         title: Text(
           'Safe_Guard',
           style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+        ),
         backgroundColor: Colors.blueGrey,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: firestore.collection('pictures').orderBy('time', descending: true).snapshots(),
+        stream: firestore
+            .collection('pictures')
+            .orderBy('time', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
@@ -135,8 +138,12 @@ class _HomeState extends State<Home> {
           // docs를 업데이트
           var docs = snapshot.data!.docs;
           docs.sort((doc1, doc2) {
-            var time1 = ((doc1.data() as Map<String, dynamic>)['time'] as Timestamp).toDate();
-            var time2 = ((doc2.data() as Map<String, dynamic>)['time'] as Timestamp).toDate();
+            var time1 =
+                ((doc1.data() as Map<String, dynamic>)['time'] as Timestamp)
+                    .toDate();
+            var time2 =
+                ((doc2.data() as Map<String, dynamic>)['time'] as Timestamp)
+                    .toDate();
             return time2.compareTo(time1); // 최신순으로 정렬
           });
 
@@ -145,6 +152,8 @@ class _HomeState extends State<Home> {
             separatorBuilder: (context, index) =>
                 SizedBox(height: 10), // Add spacing between items
             itemBuilder: (context, index) {
+              var docOne = (docs[index].data()
+                                      as Map<String, dynamic>);
               Map<String, dynamic> data =
                   docs[index].data() as Map<String, dynamic>;
               String imageUrl = data['image'] ?? '';
@@ -158,11 +167,41 @@ class _HomeState extends State<Home> {
                     child: Row(
                       children: [
                         imageUrl.isNotEmpty
-                            ? image(
-                                docs[index].id, index) // Use the image widget
+                            ? GestureDetector(
+                                onTap: () {
+                                  // 이미지를 클릭했을 때의 동작 정의
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ImageDetailScreen(
+                                        imageUrl: docOne['image'],
+                                        timestamp: (docOne['time'] as Timestamp)
+                                            .toDate(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Image.network(
+                                  (docs[index].data()
+                                      as Map<String, dynamic>)['image'],
+                                  fit: BoxFit.cover,
+                                  width: 100,
+                                  height: double.infinity,
+                                ),
+                              )
                             : Container(),
+
+                        // imageUrl.isNotEmpty
+                        //     ? image(
+                        //         docs[index].id, index) // Use the image widget
+                        //     : Container(),
                         SizedBox(width: 10),
-                        timestamp(docs[index].id),
+                        Text(
+                          "촬영 일시 : ${DateFormat('yyyy-MM-dd HH:mm').format((docOne['time'] as Timestamp).toDate())}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
                       ],
                     ),
                   ),
