@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
             DateFormat('yyyy-MM-dd HH:mm').format(snapshot.data!);
 
         return Text(
-          "일시: $formattedDate",
+          "촬영 일시 : $formattedDate",
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         );
@@ -116,7 +116,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safe_Guard'),
+        title: Text(
+          'Safe_Guard',
+          style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        backgroundColor: Colors.blueGrey,
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: firestore.collection('pictures').snapshots(),
