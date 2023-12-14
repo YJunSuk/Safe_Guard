@@ -59,18 +59,37 @@ class _CameraState extends State<Camera> {
   }
 
   Widget buttonSection() {
-    return ElevatedButton(
-      onPressed: () {
-        // connectToDevice(addr);
-        takePicture();
-      },
-      child: const Text("Connect")
+    BluetoothConnection? connection;
+    return Row(
+      children: [
+        ElevatedButton(
+          onPressed: () async {
+            var permissions = [Permission.bluetoothAdvertise, Permission.bluetoothConnect, Permission.bluetoothScan];
+            for(var e in permissions){
+              var status = await e.request();
+              if(!status.isGranted){
+                log.e("권한 없다");
+                return;
+              }
+            }
+            connection = await connectToDevice(addr);
+          },
+          child: const Text("Connect")
+        ),
+        ElevatedButton(
+            onPressed: () async {
+              connection?.close() ?? ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("이미 해제되었습니다")));
+            },
+            child: const Text("Connect")
+        ),
+      ],
     );
   }
 
-  void connectToDevice(String address) async {
+  Future<BluetoothConnection> connectToDevice(String address) async {
     try {
       BluetoothConnection connection = await BluetoothConnection.toAddress(address);
+      log.i("test");
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("연결 완료")));
       log.i("연결 완료");
 
@@ -79,14 +98,13 @@ class _CameraState extends State<Camera> {
         if (ascii.decode(data) == "P") {
           takePicture();
         }
-        // 사진 촬영
-        // 사진 저장
-      }).onDone(() {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("연결 해제")));
-        log.i('연결 해제');
       });
+
+      return connection;
     } catch (exception) {
       log.e(exception);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: const Text("연결 실패")));
+      rethrow;
     }
   }
 
