@@ -34,10 +34,13 @@ CCTV App
 ### 기능
 
 ### 모듈
-![초음파센서](https://github.com/Mne-pr/Safe_Guard/assets/42082748/48db0c2e-af33-4713-ba6f-a9d25ddfe0a8)
-초음파 센서:SR04 초음파센서 모듈
+![초음파센서](https://github.com/Mne-pr/Safe_Guard/assets/42082748/48db0c2e-af33-4713-ba6f-a9d25ddfe0a8)<br\>
+초음파 센서:SR04 초음파센서 모듈<br\><br\>
 
-스위치: 노랑 버튼 택트스위치
+
+![스위치](https://github.com/Mne-pr/Safe_Guard/assets/42082748/e4c7afa8-1707-4690-8b4f-07064eab940a)<br\>
+스위치: 노랑 버튼 택트스위치<br\><br\>
+
 블루투스 모듈: HC-06 블루투스 모듈
 LED: LED
 모터: 5V 스테핑모터
