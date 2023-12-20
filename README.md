@@ -10,7 +10,10 @@
 6. [소감](#소감)<br/><br/>
 
 ## 1. 프로젝트 소개
-추후 작성
+- 초음파 센서를 이용한 방범 시스템
+
+## 개발 기간
+![image](https://github.com/YJunSuk/Safe_Guard/assets/42082748/9f95fd13-5072-499d-94f1-312cfaab54ba)
 
 ## 2. 전체 시스템 구조
 ![시스템 구조](https://lh7-us.googleusercontent.com/8sgYoFK8dgrUsec9hG7DIF7kPEJnbWSt5gWRpa_N-LG2o8tDMMLHd2ww23hG28vNvqyvWT6K2FgXHSqqfSay_bh57wjXuVBv8pTXKvZQvQvKyuGJtqrPr8bfm0O86Ni9XK_h-6JxU1EVswLHen--MTy7YQ=s2048)
@@ -32,9 +35,6 @@
 메인 라즈베리파이에서 발생하는 감지 신호를 수신한 후, 이 핸드폰은 촬영된 사진을 데이터베이스에 저장하는 역할을 수행한다. 특히, 수신된 값이 "P"인 경우, CCTV용 핸드폰은 사진을 촬영하여 파이어베이스 스토리지에 저장한다. 이후, 촬영된 시간과 사진의 URL 정보를 파이어스토어 데이터베이스에 저장한다.<br/><br/>
 7. **휴대폰(사용자)**<br/>
 사용자 핸드폰은 파이어스토어 데이터베이스에 리스너를 등록하고, 데이터베이스의 정보 변화(새로운 사진과 시간 정보)를 감지한다. 이러한 정보 변화를 감지하면, 사용자 핸드폰은 이 정보를 읽어와서 현재 핸드폰의 사진 목록을 업데이트한다. 이러한 과정을 통해 사용자는 실시간으로 CCTV의 상황을 파악할 수 있다. 이 시스템은 사용자의 안전과 보안을 위한 중요한 역할을 수행한다.
-
-## 개발 기간
-추후작성
 
 ## 멤버 구성
 
@@ -73,20 +73,22 @@
 
 ## 문제점 및 해결방안
 1. **초음파 모듈 미작동 오류**</br>
-   - 이미지</br>
    - 원인 : 저항의 과도한 삽입으로 브레드보드 내에서 합선 발생</br>
    - 해결방안 : 저항을 모두 제거 후 적당한 깊이로 조정 및 배선 정리 실시</br></br>
    
 2. **스텝모터 오작동 오류**</br>
-   - 이미지</br>
    - 원인 : 스텝모터 회전 시 신호를 받는 경우 Race Condition이 발생하여 오작동 발생</br>
    - 해결방안 : StepMotorLock을 이용하여 회전 시 스레드에 락을 걸어서 Race Condition발생을 예방</br></br>
    
 3. **휴대폰 연결 시 라즈베리파이 탐지 오류**</br>
-   - 이미지</br>
    - 원인 : 라즈베리파이에서 사용하는 UART통신은 주로 Bluetooth Classic을 사용하지만 개발 중 BLE패키지를 사용하여 발생</br>
    - 해결방안 : 기존의 BLE패키지를 Classic패키지로 변경</br></br>
 
 ## 데모 영상
+
+<a href="https://youtube.com/shorts/1B8Lb1gBz9w?feature=share" target="_blank">
+  <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/b981be05-4f95-40a6-91f6-170bfebb0e09" width="200" alt="데모영상">
+</a>
+
 
 ## 소감
