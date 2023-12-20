@@ -88,7 +88,7 @@
    - 원인 : 라즈베리파이에서 사용하는 UART통신은 주로 Bluetooth Classic을 사용하지만 개발 중 BLE패키지를 사용하여 발생</br>
    - 해결방안 : 기존의 BLE패키지를 Classic패키지로 변경</br></br>
 
-## 8. 데모 영상 (youtube)
+## 8. 데모 영상
 
 <a href="https://youtube.com/shorts/1B8Lb1gBz9w?feature=share" target="_blank">
   <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/b981be05-4f95-40a6-91f6-170bfebb0e09" width="200" alt="데모영상">
