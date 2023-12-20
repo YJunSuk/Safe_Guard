@@ -16,7 +16,9 @@
 - 초음파 센서를 이용한 방범 시스템
 
 ## 2. 개발 일정
-![image](https://github.com/YJunSuk/Safe_Guard/assets/42082748/9f95fd13-5072-499d-94f1-312cfaab54ba)
+![개발 일정](https://github.com/YJunSuk/Safe_Guard/assets/42082748/27d356bd-928c-4e81-a518-d0be32edc249)
+
+
 
 ## 3. 전체 시스템 구조
 ![시스템 구조](https://lh7-us.googleusercontent.com/8sgYoFK8dgrUsec9hG7DIF7kPEJnbWSt5gWRpa_N-LG2o8tDMMLHd2ww23hG28vNvqyvWT6K2FgXHSqqfSay_bh57wjXuVBv8pTXKvZQvQvKyuGJtqrPr8bfm0O86Ni9XK_h-6JxU1EVswLHen--MTy7YQ=s2048)
@@ -62,7 +64,6 @@
 |<img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/089bfa37-0518-4a37-83dc-ff85223a6ec6" width="200" height="200" alt="스텝모터">|<img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/57cddefd-9733-47fe-ba49-6abbd54907dc" width="200" alt="부저">|
 
 ## 6. 사용 스레드
-![쓰레드 구조](https://github.com/YJunSuk/Safe_Guard/assets/117419920/47222bfc-4c09-41c0-ac82-2e0be854103d)
 
 | 스레드명            | 역할 |
 | ----------------- | ---- |
