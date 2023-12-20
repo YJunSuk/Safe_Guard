@@ -94,9 +94,3 @@
   <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/b981be05-4f95-40a6-91f6-170bfebb0e09" width="200" alt="데모영상">
 </a>
 
-
-## 9. 소감
-- 권태현 : 
-- 박재성 : 
-- 손현락 : 
-- 양준석 : 
