@@ -1,7 +1,7 @@
 # 임베디드 팀 프로젝트 (2팀)
 
 ### 목차
-[프로젝트 소개](#-1.-프로젝트-소개)<br/>
+1. [프로젝트 소개](#프로젝트-소개)<br/>
 [개발 기간](#2.-개발-기간)<br/>
 [멤버 구성](#3.-멤버-구성)<br/>
 [기능](#4.-기능)<br/>
@@ -10,6 +10,8 @@
 [문제점 및 해결방안](#7.-문제점-및-해결방안)<br/> 
 [데모영상](#8.-데모영상)<br/>
 [소감](#9.-소감)<br/><br/>
+
+
 
 ### 시스템 구조
 ![](https://lh7-us.googleusercontent.com/8sgYoFK8dgrUsec9hG7DIF7kPEJnbWSt5gWRpa_N-LG2o8tDMMLHd2ww23hG28vNvqyvWT6K2FgXHSqqfSay_bh57wjXuVBv8pTXKvZQvQvKyuGJtqrPr8bfm0O86Ni9XK_h-6JxU1EVswLHen--MTy7YQ=s2048)
@@ -102,7 +104,7 @@ CCTV App
 ### 소감
 
 
-
+### 프로젝트 소개
 
 ### 추가기능(시간 남을 시)
 - 라즈베리파이 2개 사용(초음파 센서 여러개)
