@@ -16,7 +16,6 @@
 
 ### 개발 기간
 
-> test
 
 ### 멤버 구성
 
@@ -35,17 +34,35 @@ CCTV App
 ### 기능
 
 ### 모듈
-![초음파센서](https://github.com/Mne-pr/Safe_Guard/assets/42082748/48db0c2e-af33-4713-ba6f-a9d25ddfe0a8)<br\>
-초음파 센서:SR04 초음파센서 모듈<br\><br\>
+<p align="center">
+  <img src="https://github.com/Mne-pr/Safe_Guard/assets/42082748/48db0c2e-af33-4713-ba6f-a9d25ddfe0a8" width="300" alt="초음파센서">
+</p>
+<p align="center"><strong>SR04 초음파센서 모듈</strong></p>
 
+<p align="center">
+  <img src="https://github.com/Mne-pr/Safe_Guard/assets/42082748/e4c7afa8-1707-4690-8b4f-07064eab940a" width="300" alt="스위치">
+</p>
+<p align="center"><strong>노랑 버튼 택트스위치</strong><p/>
 
-![스위치](https://github.com/Mne-pr/Safe_Guard/assets/42082748/e4c7afa8-1707-4690-8b4f-07064eab940a)<br\>
-스위치: 노랑 버튼 택트스위치<br\><br\>
+<p align="center">
+  <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/65b9af80-f1bf-4ac6-b6fa-02da6d186d5c" width="300" alt="블루투스모듈">
+</p>
+<p align="center"><strong>HC-06 블루투스 모듈</strong><p/>
 
-블루투스 모듈: HC-06 블루투스 모듈
-LED: LED
-모터: 5V 스테핑모터
-스피커: 수동부저
+<p align="center">
+  <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/981651c1-29e4-454e-82ba-ab1a1264e1eb" width="300" alt="LED">
+</p>
+<p align="center"><strong>LED</strong><p/>
+
+<p align="center">
+  <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/089bfa37-0518-4a37-83dc-ff85223a6ec6" width="300" alt="스텝모터">
+</p>
+<p align="center"><strong>5V 스테핑모터</strong><p/>
+
+<p align="center">
+  <img src="https://github.com/YJunSuk/Safe_Guard/assets/42082748/57cddefd-9733-47fe-ba49-6abbd54907dc" width="300" alt="부저">
+</p>
+<p align="center"><strong>수동부저</strong></p>
 
 ### 전체 시스템 구조
 - **시스템 구조**
@@ -77,4 +94,3 @@ LED: LED
 - PPT 제작 및 발표 : 박재성
 
 - 자료 조사 및 작성 : 손현락, 권태현, 양준석
-
